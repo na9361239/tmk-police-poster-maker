@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TMK Police Poster Maker</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#e9eef4;color:#102a43;font-family:Arial,"Noto Nastaliq Urdu","Noto Naskh Arabic",sans-serif}
+header{background:#002e28;color:white;text-align:center;padding:18px 12px}header h1{font-size:25px;margin:0 0 5px;direction:ltr}header p{margin:0;font-size:14px;direction:ltr}
+main{max-width:1050px;margin:18px auto;padding:0 12px;display:grid;grid-template-columns:1fr;gap:16px}
+.card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px #00000010}
+h2{color:#005445;margin:0 0 14px;font-size:22px}
+label{display:block;font-weight:bold;margin:13px 0 6px}
+input,textarea{font:inherit;width:100%;padding:11px;border:1px solid #cbd5d8;border-radius:9px;background:white}
+textarea{min-height:115px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{border:0;border-radius:9px;padding:13px 17px;font-size:16px;font-weight:bold;cursor:pointer;margin:8px 5px 0 0}
+.primary{background:#005b4e;color:white}.gold{background:#d2a62c;color:#142c2b}
+.note{font-size:13px;color:#536574;line-height:1.6}
+#poster{width:100%;max-width:600px;margin:auto;background:#001c3e;border:7px solid #f8d42e;color:white;overflow:hidden;text-align:center}
+.phead{background:linear-gradient(120deg,#e90014,#ff3025,#e80012);padding:12px 10px;border-bottom:5px solid #ffdf22;color:white;text-shadow:2px 3px #000;font-weight:900}
+.brand{display:flex;align-items:center;justify-content:space-around;gap:8px;background:#003d35;padding:12px 8px;min-height:100px}
+.brand img{width:68px;height:68px;object-fit:contain;background:white;border-radius:50%;color:#333;font-size:10px}
+.brandtitle{font-weight:bold;font-size:15px;direction:ltr}
+.datebar{background:#09274d;color:#ffe528;font-size:19px;font-weight:bold;padding:8px}
+.headline{font-size:clamp(23px,5vw,34px);line-height:1.6;padding:10px 4px;color:#fff;background:#061c38;text-shadow:2px 2px #000}
+.photos{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:7px;background:#fff}
+.photos img{width:100%;height:100px;object-fit:cover;border:3px solid #e80013}
+.count{margin:0;background:#e90012;color:#ffe72b;text-shadow:2px 2px #000;font-size:clamp(25px,6vw,42px);font-weight:900;padding:14px 5px}
+.section{background:#062956;color:white;font-size:25px;font-weight:bold;padding:8px;border-bottom:4px solid #ffe528}
+.recoveries{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:8px;background:#071e40}
+.item{border:3px solid #ffe528;border-radius:8px;overflow:hidden;background:#092b53;min-width:0}
+.item img{width:100%;height:80px;object-fit:cover;background:#fff}
+.item strong{display:block;background:#e90012;padding:5px 2px;font-size:15px}
+.item span{display:block;padding:7px 2px;font-size:15px;font-weight:bold;overflow-wrap:anywhere}
+.release{background:#fff;color:#111;padding:12px;text-align:right;white-space:pre-wrap;line-height:1.8;font-size:15px}
+.footer{background:#001b3c;border-top:4px solid #ffe528;padding:14px 5px;font-size:14px;line-height:1.8}
+@media(min-width:850px){main{grid-template-columns:360px 1fr;align-items:start}.preview{position:sticky;top:10px}}
+@media(max-width:420px){.grid{grid-template-columns:1fr}.photos{grid-template-columns:repeat(3,1fr)}.photos img{height:85px}.recoveries{grid-template-columns:repeat(2,1fr)}.item img{height:100px}.brand img{width:54px;height:54px}}
+</style>
+</head>
+<body>
+<header><h1>TMK Police Poster Maker</h1><p>Daily Police Action Poster • Mobile Friendly</p></header>
+<main>
+<section class="card">
+<h2>پوسٹر کی تفصیلات درج کریں</h2>
+<div class="grid">
+<div><label>تاریخ</label><input id="date" value="15/10/2026"></div>
+<div><label>گرفتار ملزمان کی تعداد</label><input id="count" value="10"></div>
+</div>
+<label>پوسٹر کی سرخی</label><input id="headline" value="ٹنڈو محمد خان پولیس کی کارروائیاں">
+<label>پریس ریلیز کا متن</label><textarea id="release" placeholder="یہاں پریس ریلیز کا مکمل اردو متن درج کریں"></textarea>
+<div class="grid">
+<div><label>Sindh Police Emblem</label><input id="emblem" type="file" accept="image/*"></div>
+<div><label>District Police Logo</label><input id="logo" type="file" accept="image/*"></div>
+</div>
+<label>ملزمان / کارروائی کی تصاویر (زیادہ سے زیادہ 12)</label><input id="suspects" type="file" accept="image/*" multiple>
+<h2 style="margin-top:22px">برآمدگی کی تفصیلات</h2>
+<div id="itemsForm"></div>
+<p class="note">ہر برآمدگی کے لیے نام، مقدار اور چاہیں تو تصویر اپلوڈ کریں۔ روزانہ کی اصل معلومات اور تصاویر ہی درج کریں۔</p>
+<label>TikTok اکاؤنٹ</label><input id="tiktok" value="@ssp_tmk11">
+<label>Facebook پیج</label><input id="facebook" value="SSP Tando Muhammad Khan">
+<label>ترجمان / فوٹر متن</label><input id="spokes" value="ترجمان ٹنڈو محمد خان پولیس">
+<button class="primary" id="update">پوسٹر اپڈیٹ کریں</button>
+<button class="gold" id="download">پوسٹر PNG محفوظ کریں</button>
+<p class="note">لوگو اور تصاویر منتخب کرنے کے بعد پوسٹر اپڈیٹ کریں۔ PNG بٹن کے لیے انٹرنیٹ درکار ہے۔</p>
+</section>
+<section class="card preview">
+<h2>پوسٹر کا پری ویو</h2>
+<div id="poster">
+<div class="brand"><img id="pLogo" alt="District logo"><div class="brandtitle">DISTRICT POLICE OFFICE<br>TANDO MUHAMMAD KHAN</div><img id="pEmblem" alt="Sindh Police emblem"></div>
+<div class="datebar">تاریخ: <span id="pDate">15/10/2026</span>　 |　 PRESS RELEASE</div>
+<div class="headline" id="pHeadline">ٹنڈو محمد خان پولیس کی کارروائیاں</div>
+<div class="photos" id="pPhotos"></div>
+<div class="count">❮❮ <span id="pCount">10</span> ملزمان گرفتار ❯❯</div>
+<div class="section">برآمدگی کی تفصیلات</div>
+<div class="recoveries" id="pItems"></div>
+<div class="release" id="pRelease"></div>
+<div class="footer"><b id="pSpokes">ترجمان ٹنڈو محمد خان پولیس</b><br> TikTok: <span id="pTikTok">@ssp_tmk11</span><br>Facebook: <span id="pFacebook">SSP Tando Muhammad Khan</span></div>
+</div>
+</section>
+</main>
+<script>
+const defaults=[["چرس","598 گرام"],["کچی شراب","20 لیٹرز"],["مشکوک موٹر سائیکلیں","تین عدد"],["مین پوری","10230 عدد"]];
+const itemsForm=document.getElementById('itemsForm');
+defaults.forEach((it,i)=>{itemsForm.insertAdjacentHTML('beforeend',`<div class="card" style="padding:10px;margin:8px 0"><div class="grid"><div><label>چیز کا نام ${i+1}</label><input id="itemName${i}" value="${it[0]}"></div><div><label>تعداد / مقدار</label><input id="itemQty${i}" value="${it[1]}"></div></div><label>تصویر (اختیاری)</label><input id="itemImg${i}" type="file" accept="image/*"></div>`)});
+function fileData(input, target){const f=input.files&&input.files[0];if(f){const r=new FileReader();r.onload=e=>{target.src=e.target.result};r.readAsDataURL(f)}}
+function update(){
+pDate.textContent=date.value||'';pHeadline.textContent=headline.value||'';pCount.textContent=count.value||'0';pRelease.textContent=release.value||'';
+pTikTok.textContent=tiktok.value;pFacebook.textContent=facebook.value;pSpokes.textContent=spokes.value;
+pItems.innerHTML='';
+defaults.forEach((_,i)=>{const box=document.createElement('div');box.className='item';const im=document.createElement('img');im.alt='Recovery';const nm=document.createElement('strong');nm.textContent=document.getElementById('itemName'+i).value;const qty=document.createElement('span');qty.textContent=document.getElementById('itemQty'+i).value;box.append(im,nm,qty);pItems.append(box);fileData(document.getElementById('itemImg'+i),im)});
+pPhotos.innerHTML='';const fs=[...(suspects.files||[])].slice(0,12);fs.forEach(f=>{const im=document.createElement('img');im.alt='Action photo';pPhotos.append(im);const r=new FileReader();r.onload=e=>im.src=e.target.result;r.readAsDataURL(f)});
+fileData(logo,pLogo);fileData(emblem,pEmblem);
+}
+document.getElementById('update').addEventListener('click',update);
+document.getElementById('download').addEventListener('click',async()=>{update();try{if(!window.html2canvas){await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';s.onload=resolve;s.onerror=reject;document.head.append(s)})}const canvas=await html2canvas(document.getElementById('poster'),{scale:2,backgroundColor:null,useCORS:true});const a=document.createElement('a');a.download='TMK-Police-Poster.png';a.href=canvas.toDataURL('image/png');a.click()}catch(e){alert('PNG محفوظ نہیں ہو سکا۔ انٹرنیٹ چیک کریں یا براؤزر کا Print/Save استعمال کریں۔')}});
+update();
+</script>
+</body>
+</html>
